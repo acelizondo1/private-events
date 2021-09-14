@@ -36,7 +36,7 @@
                 <a class="navbar-link">My Events</a>
 
                 <div class="navbar-dropdown">
-                  <%= link_to "Hosting Events", root_path, class: "navbar-item"%>
+                  <%= link_to "Hosting Events", "/users/:current_user.id", class: "navbar-item"%>
                   <%= link_to "Attending Events", root_path, class: "navbar-item"%>
                 </div>
               </div>
