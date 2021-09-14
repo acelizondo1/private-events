@@ -11,8 +11,12 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if flash[:notice] %>
+      <p class="notice centered-text notification notice is-primary" onload="notificationTimeOut()"><%= notice %></p>
+    <% end%>
+    <% if flash[:alert] %>
+      <p class="alert centered-text notification notice is-danger" onload="notificationTimeOut()"><%= alert %></p>
+    <% end %>
 
     <nav class="navbar is-white has-shadow" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
