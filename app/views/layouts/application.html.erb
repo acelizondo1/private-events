@@ -13,6 +13,52 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+    <nav class="navbar is-white has-shadow" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= link_to "private_events", root_path, class: "navbar-item has-text-weight-bold is-size-5"%>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <div class="navbar-menu" id="main-navbar">
+          <div class="navbar-start">
+            <%= link_to "All Events", root_path, class: "navbar-item"%>
+            <% if user_signed_in? %>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">My Events</a>
+
+                <div class="navbar-dropdown">
+                  <%= link_to "Hosting Events", root_path, class: "navbar-item"%>
+                  <%= link_to "Attending Events", root_path, class: "navbar-item"%>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="navbar-item">
+            <div class="buttons">
+              <% if user_signed_in? %>
+                <%= link_to "Edit Profile", edit_user_registration_path, class: "button is-white has-text-weight-bold"%>
+                <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "button is-light"%>
+              <% else %>
+                <%= link_to "Sign Up", new_user_registration_path, class: "button is-white has-text-weight-bold"%>
+                <%= link_to "Log In", new_user_session_path, class: "button is-link"%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+    <br />
     <%= yield %>
   </body>
 </html>
