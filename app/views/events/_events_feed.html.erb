@@ -9,7 +9,7 @@
                     <div class="tile centered-text is-parent box m-2 is-4">
                         <div class="tile is-parent is-vertical is-6">
                             <div class="tile is-size-5 pt-6">
-                                <div class="has-text-weight-bold"><%= event.name %></div>
+                                <%= link_to event.name, event, class: "has-text-weight-bold"%>
                             </div>
                             <% if defined?(@user_show) %>
                             <div class="tile">
