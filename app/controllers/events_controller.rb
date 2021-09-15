@@ -34,6 +34,15 @@ class EventsController < ApplicationController
 
     def update 
         set_event
+        respond_to do |format|
+            if @event.update(event_params)
+              format.html { redirect_to "/users/:current_user.id", notice: "Post was successfully updated." }
+              format.json { render :show, status: :ok, location: @event }
+            else
+              format.html { render :edit, status: :unprocessable_entity }
+              format.json { render json: @event.errors, status: :unprocessable_entity }
+            end
+        end
     end
 
     def destroy 
