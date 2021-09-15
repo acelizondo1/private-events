@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     end
 
     def new
-        @event = Event.new
+        @event = current_user.created_events.build
     end
 
     def edit
@@ -18,16 +18,16 @@ class EventsController < ApplicationController
     end
 
     def create
-        @event = Event.new
+        @event = current_user.created_events.build(event_params)
     end
 
     def update 
         set_event
-
     end
 
     def destroy 
         set_event
+        
     end
 
     private 
