@@ -5,39 +5,7 @@
             <br />
             <%= link_to "Create New Event", new_event_path, class: "button is-light is-tex-weight-semi-bold"%>
             <br/>
-            <div class="mt-4">
-                <% if !@events.empty?%>
-                    <div class="tile is-ancestor">
-                        <% @events.each do |event| %>
-                            <article class="tile centered-text is-parent box m-5 is-6">
-                                <div class="tile is-vertical is-child">
-                                    <div class="title is-size-4">
-                                        <%= event.name%>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="is-size-6">
-                                            Location:
-                                        </h5>
-                                        <p>
-                                            <%= event.location %>
-                                        </p>
-                                        <h5 class="is-size-6">
-                                            Date of Event:
-                                        </h5>
-                                        <p>
-                                            <%= event.date.strftime("%B %dth, %Y") %>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-                        <% end %>
-                    </div>
-                <% else %>
-                    <div>
-                        <p class="is-size-5">You have not created any events.</p>
-                    </div>
-                <% end %>
-            </div>
+            <%= render 'events/events_feed', event: @event %>
         </div>
     </div>
 </div>

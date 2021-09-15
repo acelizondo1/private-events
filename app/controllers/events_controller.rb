@@ -2,6 +2,7 @@ class EventsController < ApplicationController
 
 
     def index
+        @interval = 0
         @events = Event.all 
     end
 
