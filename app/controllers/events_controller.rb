@@ -38,7 +38,11 @@ class EventsController < ApplicationController
 
     def destroy 
         set_event
-        
+        @event.destroy
+        respond_to do |format|
+            format.html { redirect_to "/users/:current_user.id", notice: "Event was successfully deleted." }
+            format.json { head :no_content }
+        end
     end
 
     private 

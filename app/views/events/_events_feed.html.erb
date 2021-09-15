@@ -7,10 +7,17 @@
                 <div class="tile centered-text is-parent m-5">
             <% end %>
                     <div class="tile centered-text is-parent box m-2 is-4">
-                        <div class="tile is-child is-6">
+                        <div class="tile is-parent is-vertical is-6">
                             <div class="tile is-size-5 pt-6">
                                 <div class="has-text-weight-bold"><%= event.name %></div>
                             </div>
+                            <% if defined?(@user_show) %>
+                            <div class="tile">
+                                <%= link_to "Edit", edit_event_path(event)%>
+                                |
+                                <%= link_to "Delete", event, method: :delete, data: { confirm: "Are you sure?" } %>
+                            </div>
+                            <% end %>
                         </div>
                         <div class="tile is-parent is-6 is-vertical">
                             <div class="tile is-child">
@@ -41,7 +48,7 @@
         </div>
     <% else %>
         <div>
-            <p class="is-size-5">There are no events!</p>
+            <p class="is-size-5">No Events Found!</p>
         </div>
     <% end %>
     </div>
