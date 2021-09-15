@@ -1,0 +1,8 @@
+<div class="column is-6 is-offset-3 centered-text">
+    <div class="is-size-2">
+        New Event
+    </div>
+    <%= link_to 'Back', "/users/:current_user.id", class: "button is-light"%>
+    
+    <%= render 'form', event: @event %>
+</div>

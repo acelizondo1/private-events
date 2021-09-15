@@ -1,0 +1,41 @@
+<div class="box mt-4">
+    <%= form_with(model: event) do |form| %>
+        <% if event.errors.any? %>
+            <div id="error_explanation">
+            <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+            <ul>
+                <% event.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+                <% end %>
+            </ul>
+            </div>
+        <% end %>
+
+        <div class="actions">
+            <div class="field">
+                <%= form.label :name, class: "label" %>
+                <div class="control">
+                    <%= form.text_field :name, class: "input" %>
+                </div>
+            </div>
+
+            <div class="field">
+                <%= form.label :location, class: "label" %>
+                <div class="control">
+                    <%= form.text_field :location, class: "input" %>
+                </div>
+            </div>
+
+            <div class="field">
+                <%= form.label :date, class: "label" %>
+                <div class="control">
+                    <%= form.date_field :date, class: "input" %>
+                </div>
+            </div>
+
+            <%= form.button :Submit, class: "button is-info"%>
+        </div>
+
+    <% end %>
+</div>
