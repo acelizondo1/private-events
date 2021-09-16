@@ -32,3 +32,11 @@
  .show-title {
      flex-grow: 0;
  }
+
+ #user-tab-content div {
+     display: none;
+ }
+
+ #user-tab-content div.is-active {
+     display: block;
+ }

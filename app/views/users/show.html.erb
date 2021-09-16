@@ -1,11 +1,43 @@
 <div class="columns">
-    <div class="column is-10 is-offset-1 centered-text">
-        <div class="media-center">
-            <h3 class="is-size-2 is-underlined has-text-weight-semibold">My Created Events</h3>
-            <br />
-            <%= link_to "Create New Event", new_event_path, class: "button is-light is-tex-weight-semi-bold"%>
-            <br/>
-            <%= render 'events/events_feed', event: @event %>
+    <div class="column is-12">
+        <div class="tabs is-centered is-toggle m-5">
+            <ul>
+                <li class="is-active">
+                    <a>
+                        <span>My Events</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a>
+                        <span>Invites</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a>
+                        <span>Created Events</span>
+                    </a>
+                </li>
+            </ul>
         </div>
+
+        <div id="user-tab-content" class="column is-8 is-offset-2 box">
+            <div id="my-events-tab" data-content="1" class="is-active">
+                My Events
+            </div>
+            <div id="my-invites-tab" data-content="2">
+                My Invites
+            </div>
+            <div id="my-created-tab" data-content="3">
+                My Created 
+            </div>
+        </div>
+
+        <!--<h3 class="is-size-4 is-underlined has-text-weight-semibold">My Created Events</h3>
+        <br />
+        
+        <br/>
+        <% render 'events/events_feed', event: @event %>-->
     </div>
 </div>
