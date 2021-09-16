@@ -10,11 +10,18 @@
                     <div class="has-text-weight-bold"><%= @event.name %></div>
                 </div>
                 <% if current_user.id === @event.creator.id %>
-                <div class="tile is-child">
-                    <%= link_to "Edit", edit_event_path(@event)%>
-                    |
-                    <%= link_to "Delete", @event, method: :delete, data: { confirm: "Are you sure?" } %>
-                </div>
+                    <div class="tile is-child">
+                        <%= link_to "Edit", edit_event_path(@event)%>
+                        |
+                        <%= link_to "Delete", @event, method: :delete, data: { confirm: "Are you sure?" } %>
+                    </div>
+                <% else %>
+                    <% if @event.invitees.find_by id: current_user.id %>
+                        <%= link_to "Cancel RSVP", invite_path(event_id: @event.id), method: :delete, class: "button is-danger"%>
+                    <%else%>
+                        <%= link_to "RSVP To This Event", invites_path(event_id: @event.id), method: :post, class: "button is-primary"%>
+                    <%end%>
+                    <br />
                 <% end %>
                 <div class="tile is-child">
                     <p> 
