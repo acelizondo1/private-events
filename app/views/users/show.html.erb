@@ -23,21 +23,25 @@
         </div>
 
         <div id="user-tab-content" class="column is-8 is-offset-2 box">
-            <div id="my-events-tab" data-content="1" class="is-active">
-                My Events
+            <div id="my-events-tab" data-content="1" class="content-tab is-active">
+                <div id="future-events">
+                    <h3 class="is-size-4 is-underlined centered-text has-text-weight-semibold">Upcoming Events</h3>
+                    <%= render 'events_feed', {events: @invited_events.future, tab: "attended", empty_message: "You have no upcoming events." }%>
+                </div>
+                <div id="past-events">
+                    <h3 class="is-size-4 is-underlined centered-text has-text-weight-semibold">Past Events</h3>
+                    <%= render 'events_feed', {events: @invited_events.past, tab: "attended", empty_message: "No events to display." }%>
+                </div>
             </div>
-            <div id="my-invites-tab" data-content="2">
-                My Invites
+            
+            <div id="my-invites-tab" data-content="2" class="content-tab">
+                <h3 class="is-size-4 is-underlined centered-text has-text-weight-semibold">My Invitations</h3>
             </div>
-            <div id="my-created-tab" data-content="3">
-                My Created 
+
+            <div id="my-created-tab" data-content="3" class="content-tab">
+                <h3 class="is-size-4 is-underlined centered-text has-text-weight-semibold">Created Events</h3>
+                <%= render 'events_feed', {events: @created_events, tab: "created", empty_message: "You have not created an event." }%>
             </div>
         </div>
-
-        <!--<h3 class="is-size-4 is-underlined has-text-weight-semibold">My Created Events</h3>
-        <br />
-        
-        <br/>
-        <% render 'events/events_feed', event: @event %>-->
     </div>
 </div>

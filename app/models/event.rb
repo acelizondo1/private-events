@@ -5,4 +5,6 @@ class Event < ApplicationRecord
     has_many :invites, foreign_key: :invited_event
     has_many :invitees, through: :invites, class_name: "User"
     
+    scope :past, -> { where("date < ?", Date.today) }
+    scope :future, -> { where("date > ?", Date.today) }
 end

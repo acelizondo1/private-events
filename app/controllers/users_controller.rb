@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
     def show 
-        @user_show = true
-        @interval = 0
-        @events = current_user.created_events
+        @created_events = current_user.created_events
+        @invited_events = current_user.invited_events
     end
 end
