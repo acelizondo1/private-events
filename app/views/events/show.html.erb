@@ -23,36 +23,6 @@
                     <%end%>
                     <br />
                 <% end %>
-                <div class="tile is-child">
-                    <p> 
-                        <span class="has-text-weight-bold">Organizer: </span>
-                        <%= @event.creator.full_name %>
-                    </p>
-                    <br /> 
-                    <p>For more informaton please contact: 
-                        <span class="has-text-weight-bold"><%= @event.creator.email %></span>
-                    </p>
-                </div>
-            </div>
-            <div class="tile is-parent is-6 is-vertical">
-                <div class="tile is-parent is-vertical box">
-                    <div class="tile is-child">
-                        <h5 class="is-size-6 has-text-weight-semibold">
-                            Location:
-                        </h5>
-                        <p>
-                            <%= @event.location %>
-                        </p>
-                    </div>
-                    <div class="tile is-child">
-                        <h5 class="is-size-6 has-text-weight-semibold">
-                            Date of Event:
-                        </h5>
-                        <p>
-                            <%= @event.date.strftime("%A, %B %dth, %Y") %>
-                        </p>
-                    </div>
-                </div>
                 <div class="tile is-child centered-text box">
                     <p class="title">
                         Guest List
@@ -65,6 +35,45 @@
                         <% end %>
                     <% end %>    
                 </div>
+            </div>
+            <div class="tile is-parent is-6 is-vertical tile-flex-limit">
+                <div class="tile is-parent is-vertical box">
+                    <div class="tile is-child">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <span>
+                                Organized by <%= @event.creator.full_name %>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="tile is-child">
+                        <span clas="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </span>
+                            <span>
+                                <%= @event.location %>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="tile is-child">
+                        <span class=icon-text>
+                            <span class="icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </span>
+                            <span>
+                                <%= @event.date.strftime("%A, %B %dth, %Y") %>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="tile is-child">
+                        For more informaton please contact: 
+                        <span class="has-text-weight-bold"><%= @event.creator.email %></span>
+                    </div>
+                </div>
+              
             </div>
         </div>
     </div>

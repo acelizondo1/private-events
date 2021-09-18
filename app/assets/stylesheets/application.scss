@@ -33,6 +33,10 @@
      flex-grow: 0;
  }
 
+ .tile-flex-limit{
+    display: flow-root !important;
+}
+
  #user-tab-content .content-tab {
      display: none;
  }
@@ -40,3 +44,4 @@
  #user-tab-content div.is-active {
      display: block;
  }
+
