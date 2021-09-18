@@ -26,7 +26,7 @@
             <div id="my-events-tab" data-content="1" class="content-tab is-active">
                 <div id="future-events">
                     <h3 class="is-size-4 is-underlined centered-text has-text-weight-semibold">Upcoming Events</h3>
-                    <%= render 'events_feed', {events: @invited_events.future, tab: "attended", empty_message: "You have no upcoming events." }%>
+                    <%= render 'events_feed', {events: @invited_events.future, tab: "attended", empty_message: "You have no upcoming events.", interval: 0 }%>
                 </div>
                 <div id="past-events">
                     <h3 class="is-size-4 is-underlined centered-text has-text-weight-semibold">Past Events</h3>

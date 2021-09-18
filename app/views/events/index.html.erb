@@ -4,7 +4,7 @@
             <h3 class="is-size-2 is-underlined has-text-weight-semibold">Events</h3>
             <br />
 
-            <%= render 'events_feed', event: @event%>
+            <%= render 'events_feed', { events: @events.order(date: :desc), interval: 0 } %>
         </div>
     </div>
 </div>
