@@ -30,7 +30,7 @@
                 </div>
                 <div id="past-events">
                     <h3 class="is-size-4 is-underlined centered-text has-text-weight-semibold">Past Events</h3>
-                    <%= render 'events_feed', {events: @invited_events.past, tab: "attended", empty_message: "No events to display." }%>
+                    <%= render 'events_feed', {events: @invited_events.past, tab: "attended", empty_message: "No events to display.", interval: 0 }%>
                 </div>
             </div>
             
@@ -40,7 +40,7 @@
 
             <div id="my-created-tab" data-content="3" class="content-tab">
                 <h3 class="is-size-4 is-underlined centered-text has-text-weight-semibold">Created Events</h3>
-                <%= render 'events_feed', {events: @created_events, tab: "created", empty_message: "You have not created an event." }%>
+                <%= render 'events_feed', {events: @created_events, tab: "created", empty_message: "You have not created an event.", interval: 0 }%>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-<% interval = 0 %>
+<!--<% interval = 0 %>-->
 <% if !events.empty? %>
     <div class="tile is-ancestor">
         <div class="tile is-parent is-vertical">
@@ -45,7 +45,7 @@
                 <% interval += 1 %>
             <% end %>
         <% end %>
-        <% if events.size < 2 %>
+        <% if events.size.odd? %>
             </div>
         <% end %>
         </div>
