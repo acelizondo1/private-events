@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_225426) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "creator_id"
-    t.boolean "private"
+    t.boolean "private", default: false
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_225426) do
     t.integer "invited_event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "invite_status"
+    t.boolean "invite_status", default: false
     t.integer "rsvp_status", default: 2
     t.index ["invited_event_id"], name: "index_invites_on_invited_event_id"
     t.index ["invitee_id"], name: "index_invites_on_invitee_id"

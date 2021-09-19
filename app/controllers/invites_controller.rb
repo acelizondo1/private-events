@@ -1,8 +1,15 @@
 class InvitesController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_event
+    before_action :private_event, :new
+
+    def new
+        generate_uninvited
+        @users_pending = @event.invitees.where(invite_status: true)
+        @users_accepted = @event.invitees.where(rsvp_status: 1)
+    end
 
     def create
-        set_event
         invite = Invite.new(:invitee_id => current_user.id, :invited_event_id => @event.id)
         
         respond_to do |format|
@@ -21,7 +28,6 @@ class InvitesController < ApplicationController
     end
 
     def destroy
-        set_event
         invite = @event.invites.find_by invitee_id: current_user.id
         invite.destroy
         respond_to do |format|
@@ -32,5 +38,17 @@ class InvitesController < ApplicationController
     private
     def set_event
         @event = Event.find(params[:event_id])
+    end
+
+    def private_event
+        @event.private
+    end
+    
+    def generate_uninvited
+        @uninvited_users = []
+        User.all.each do |user|
+            @uninvited_users.push(user) if !user.invited_events.include?(@event)
+        end
+        @uninvited_users.count
     end
 end

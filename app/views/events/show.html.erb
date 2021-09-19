@@ -26,12 +26,15 @@
                     <p class="title">
                         Guest List
                     </p>
+                    <%= link_to "Invite Users", new_invite_path(event_id: @event.id), class: "button is-info" %>
                     <% if @event.invitees.empty?%>
-                        <p>No guests have rsvp'd!</p>
+                        <p class="m-4">No guests have rsvp'd!</p>
                     <% else %>
-                        <% @event.invitees.each do |invitee| %>
-                            <p><%= invitee.full_name%></p>
-                        <% end %>
+                        <div class="m-4" id="guest-list">
+                            <% @event.invitees.each do |invitee| %>
+                                <p><%= invitee.full_name%></p>
+                            <% end %>
+                        </div>
                     <% end %>    
                 </div>
             </div>
