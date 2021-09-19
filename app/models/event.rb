@@ -2,6 +2,7 @@ class Event < ApplicationRecord
     validates :name, presence: true
     validates :location, presence: true
     validates :date, presence: true
+    validates :private, presence: true
 
     belongs_to :creator, class_name: "User"
     has_many :invites, foreign_key: :invited_event

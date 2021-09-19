@@ -34,6 +34,14 @@
                 </div>
             </div>
 
+            <div class="field">
+                <%= form.label "Event Status", class: "label" %>
+                <%= form.radio_button :private, "false", checked: true %>
+                <%= form.label :event_public, "Public", class: "mr-2" %>
+                <%= form.radio_button :private, "true" %>
+                <%= form.label :event_private, "Private" %>
+            </div>
+            <br />
             <%= form.button :Submit, class: "button is-info"%>
             <%= link_to 'Cancel', "/users/:current_user.id", class: "button is-light"%>
         </div>
