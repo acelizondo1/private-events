@@ -2,8 +2,7 @@ class EventsController < ApplicationController
 
 
     def index
-        @interval = 0
-        @events = Event.all 
+        @events = Event.where(private: false)
     end
 
     def show 
@@ -23,7 +22,7 @@ class EventsController < ApplicationController
 
         respond_to do |format|
             if @event.save
-              format.html { redirect_to "/users/:current_user.id", notice: "Event was successfully created." }
+              format.html { redirect_to event_path(@event), notice: "Event was successfully created." }
               format.json { render :show, status: :created, location: @event }
             else
               format.html { render :new, status: :unprocessable_entity }

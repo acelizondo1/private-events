@@ -11,9 +11,8 @@
                 </div>
                 <% if current_user.id === @event.creator.id %>
                     <div class="tile is-child">
-                        <%= link_to "Edit", edit_event_path(@event)%>
-                        |
-                        <%= link_to "Delete", @event, method: :delete, data: { confirm: "Are you sure?" } %>
+                        <%= link_to "Edit", edit_event_path(@event), class: "button is-info is-small is-outlined mr-1" %>
+                        <%= link_to "Delete", @event, method: :delete, data: { confirm: "Are you sure?" }, class: "button is-danger is-small is-outlined" %>
                     </div>
                 <% else %>
                     <% if @event.invitees.find_by id: current_user.id %>
