@@ -10,12 +10,24 @@ class InvitesController < ApplicationController
     end
 
     def create
-        invite = Invite.new(:invitee_id => current_user.id, :invited_event_id => @event.id)
+        if private_event
+            invite_status = true
+            user = set_user
+            user_id = user.id
+        else
+            invite_status = false
+            user_id = current_user.id
+        end
+
+        invite = Invite.new(:invitee_id => user_id, :invited_event_id => @event.id, :invite_status => invite_status, :rsvp_status => 2)
         
         respond_to do |format|
             if invite.save
-                format.html { redirect_to event_path(@event), notice: "You have joined the guest list for #{@event.name}" }
-                #format.json { render }
+                if private_event
+                    format.html { redirect_to new_invite_path(event_id: @event.id), notice: "#{user.full_name} has been invited" }
+                else 
+                    format.html { redirect_to event_path(@event), notice: "You have joined the guest list for #{@event.name}" }
+                end
             else
                 format.html { redirect_to event_path(@event), status: :unprocessable_entity}
                 format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -40,6 +52,10 @@ class InvitesController < ApplicationController
         @event = Event.find(params[:event_id])
     end
 
+    def set_user
+        User.find(params[:user_id])
+    end
+
     def private_event
         @event.private
     end
@@ -51,4 +67,5 @@ class InvitesController < ApplicationController
         end
         @uninvited_users.count
     end
+
 end

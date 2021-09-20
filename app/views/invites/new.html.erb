@@ -17,9 +17,9 @@
                                 <% if count == 1 %>
                                     <div class="tile is-parent">
                                 <% end %>
-                                    <div class="tile is-child box is-4 m-5">
+                                    <div class="tile is-child box is-4">
                                         <div class="title is-size-5"><%= uninvited_user.full_name%></div>
-                                        <%= link_to "Send Invite",  invites_path(uninvited_user), class: "button is-outlined is-info is-small" %>
+                                        <%= link_to "Send Invite",  invites_path(user_id: uninvited_user,  event_id: @event), method: :post, class: "button is-outlined is-info is-small" %>
                                     </div>
                                 <% if count%3 == 0 %>
                                     </div>
