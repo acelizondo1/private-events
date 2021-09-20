@@ -37,6 +37,10 @@
     display: flow-root !important;
 }
 
+.tile:not(.is-vertical) > .tile.is-child:not(:last-child) {
+    margin-right: 0.25rem !important;
+ }
+
  #user-tab-content .content-tab {
      display: none;
  }
