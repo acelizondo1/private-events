@@ -1,21 +1,23 @@
-<div class="column is-6 is-offset-3 centered-text">
+<div class="column is-8 is-offset-2 centered-text">
     <div class="is-size-2">
         Manage Invitations for <%= @event.name %>
     </div>
 
     <div class="tile is-ancestor">
-        <div class="tile is-vertical box m-5 is-12">
-            <div class="tile is-parent">
-                <div class="tile is-child centered-text is-12 box">
+        <div class="tile m-5 is-12">
+            <div class="tile is-vertical">
+                <div class="tile is-vertical centered-text is-12 box">
                     <div class="title is-size-4">
                         Select Users to Invite
                     </div>
                     <div id="user-invite">
                         <% count = 1 %>
+                        <% need_end = false %>
                         <% @uninvited_users.each do |uninvited_user| %>
                             <% if uninvited_user.id != current_user.id %>
                                 <% if count == 1 %>
                                     <div class="tile is-parent">
+                                    <% need_end = true %>
                                 <% end %>
                                     <div class="tile is-child box is-4">
                                         <div class="title is-size-5"><%= uninvited_user.full_name%></div>
@@ -24,11 +26,43 @@
                                 <% if count%3 == 0 %>
                                     </div>
                                     <% count = 1 %>
+                                    <% need_end = false%>
                                 <% else %>
                                     <% count+=1 %>
                                 <% end %>
                             <% end %>
                         <% end %>
+                        <% if need_end %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="tile">
+                    <div class="tile is-parent">
+                        <div class="tile is-child box mr-2 is-vertical" id="pending_invites">
+                            <div class="title is-size-5 is-12 centered-text">Pending Invitations</div>
+                            <div>
+                                <% @users_pending.each do |user_pending| %>
+                                    <div class="box m-2">
+                                        <h4 class="is-size-6 has-text-weight-semibold"><%= user_pending.full_name %></h4>
+                                        <br />
+                                        <%= link_to "Uninvite", invite_path(id: user_pending.invites.where(invited_event_id: @event.id).first, event_id: @event.id), method: :delete, class: "button is-outlined is-danger is-small"%>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+                        <div class="tile is-child box ml-2 is-vertical" id="accepted_invites">
+                            <div class="title is-size-5 is-12 centered-text">Accepted Invitations</div>
+                            <div>
+                                <% @users_accepted.each do |user_accepted| %>
+                                    <div class="box m-2">
+                                        <h4 class="is-size-6 has-text-weight-semibold"><%= user_accepted.full_name %></h4>
+                                        <br />
+                                        <%= link_to "Uninvite", invite_path(id: user_accepted.invites.where(invited_event_id: @event.id).first, event_id: @event.id), method: :delete, class: "button is-outlined is-danger is-small"%>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

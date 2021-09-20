@@ -5,8 +5,8 @@ class InvitesController < ApplicationController
 
     def new
         generate_uninvited
-        @users_pending = @event.invitees.where(invite_status: true)
-        @users_accepted = @event.invitees.where(rsvp_status: 1)
+        @users_pending = User.joins(:invites).where("invited_event_id=? and invite_status=? and rsvp_status=?", @event.id, 1, 2)
+        @users_accepted = User.joins(:invites).where("invited_event_id=? and invite_status=? and rsvp_status=?", @event.id, 1, 1)
     end
 
     def create
@@ -40,10 +40,18 @@ class InvitesController < ApplicationController
     end
 
     def destroy
-        invite = @event.invites.find_by invitee_id: current_user.id
+        if private_event
+            invite = Invite.find(params[:id])
+        else
+            invite = @event.invites.find_by invitee_id: current_user.id
+        end
         invite.destroy
         respond_to do |format|
-            format.html { redirect_to event_path(@event), notice: "You have been removed from the guest list for #{@event.name}" } 
+            if private_event
+                format.html { redirect_to new_invite_path(event_id: @event.id), notice: "User has been uninvited" } 
+            else
+                format.html { redirect_to event_path(@event), notice: "You have been removed from the guest list for #{@event.name}" } 
+            end
         end
     end
 
