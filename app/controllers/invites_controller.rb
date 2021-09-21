@@ -1,7 +1,7 @@
 class InvitesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_event
-    before_action :private_event, :new
+    before_action :private_event, only: [:new, :update ]
 
     def new
         generate_uninvited
@@ -36,6 +36,15 @@ class InvitesController < ApplicationController
     end
 
     def update
+        invite = Invite.find(params[:id])
+        params[:rsvp_status] == 1 ? notice = "You accepted the invitation to #{@event.name}" : notice = "You declined the invitation to #{@event.name}"
+        respond_to do |format|
+            if invite.update(:rsvp_status=>params[:rsvp_status])
+                format.html { redirect_to "/users/:current_user.id", notice: notice }
+            else
+                format.html { redirect_to event_path(@event), status: :unprocessable_entity}
+            end
+        end
 
     end
 

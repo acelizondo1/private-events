@@ -36,6 +36,19 @@
             
             <div id="my-invites-tab" data-content="2" class="content-tab">
                 <h3 class="is-size-4 is-underlined centered-text has-text-weight-semibold">My Invitations</h3>
+                <br />
+                <div class="tile is-ancestor">
+                    <div class="tile is-parent is-vertical centered-text">
+                        <div class="tile is-child">
+                            <div class="title is-size-5">Pending Invitations</div>
+                            <%= render 'invitations_feed', {event_invites: @pending_event_invites, count: 1, need_end: false, view: "pending"} %>
+                        </div>
+                        <div class="tile is-child">
+                            <div class="title is-size-5">Declined Invitations</div>
+                            <%= render 'invitations_feed', {event_invites: @declined_event_invites, count: 1, need_end: false, view: "declined"} %>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div id="my-created-tab" data-content="3" class="content-tab">

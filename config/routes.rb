@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   get "/users/:id", to: "users#show"
 
   resources :events
-  resources :invites, only: [:new, :create, :edit, :destroy]
+  resources :invites, only: [:new, :create, :update, :destroy]
   root 'events#index'
 end

@@ -1,0 +1,42 @@
+<% if !event_invites.empty? %>
+
+    <% event_invites.each do |event_invite| %>
+        <% if count == 1 %>
+            <div class="tile is-parent">
+            <% need_end = true %>
+        <% end %>
+
+                <div class="tile is-child box p-2 is-4">
+                    <div class="tile">
+                        <div class="tile is-parent is-vertical">
+                            <div class="tile is-child">
+                                <p class="is-size-6 has-text-weight-semibold"><%= link_to event_invite.name, @event %></p>
+                                <% if view == "pending" %>
+                                <div class="tile is-parent centered-text is-justify-content-center">
+                                    <% invite = Invite.find_by invitee_id: current_user.id, invited_event_id: event_invite.id %>
+                                    <%= link_to "Accept", invite_path(id: invite.id, rsvp_status: 1, event_id: event_invite.id), method: :put, class: "button is-outlined is-primary mr-2"%>
+                                    <%= link_to "Decline", invite_path(id: invite.id, rsvp_status: 0, event_id: event_invite.id), method: :put, class: "button is-outlined is-danger ml-2"%>
+                                </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <% if count%3 == 0 %>
+            </div>
+            <% count = 1 %>
+            <% need_end = false%>
+        <% else %>
+            <% count+=1 %>
+        <% end %>
+        
+    <% end %>
+    <% if need_end %>    
+        </div>
+    <% end %>
+
+<% else %>
+    <br />
+    <p class="centered-text">There are no invites to display</p>
+<% end %>
