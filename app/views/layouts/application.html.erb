@@ -33,14 +33,7 @@
           <div class="navbar-start">
             <%= link_to "All Events", root_path, class: "navbar-item"%>
             <% if user_signed_in? %>
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">My Events</a>
-
-                <div class="navbar-dropdown">
-                  <%= link_to "Hosting Events", "/users/:current_user.id", class: "navbar-item"%>
-                  <%= link_to "Attending Events", root_path, class: "navbar-item"%>
-                </div>
-              </div>
+              <%= link_to "My Events", "/users/:current_user.id", class: "navbar-item"%>
               <div class="navbar-item">
                 <div class="buttons">
                   <%= link_to "Create New Event", new_event_path, class: "button is-primary has-text-weight-semibold"%>
