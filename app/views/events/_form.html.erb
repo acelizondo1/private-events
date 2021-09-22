@@ -34,12 +34,19 @@
                 </div>
             </div>
 
-            <div class="field">
+            <!--<div class="field">
                 <%= form.label "Event Status", class: "label" %>
                 <%= form.radio_button :private, "false", checked: true %>
                 <%= form.label :event_public, "Public", class: "mr-2" %>
                 <%= form.radio_button :private, "true" %>
                 <%= form.label :event_private, "Private" %>
+            </div>-->
+            <div class="field">
+                <%= form.label "Event Status", class: "label" %>
+                <%= form.radio_button :private, false, checked: true %>
+                <%= form.label :private, "Public", :value=>"false", class: "mr-2" %>
+                <%= form.radio_button :private, true %>
+                <%= form.label :private, "Private", :value=>"true" %>
             </div>
             <br />
             <%= form.button :Submit, class: "button is-info"%>
