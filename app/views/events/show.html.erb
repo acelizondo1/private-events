@@ -26,7 +26,9 @@
                     <p class="title">
                         Guest List
                     </p>
-                    <%= link_to "Invite Users", new_invite_path(event_id: @event.id), class: "button is-info" %>
+                    <% if @event.private %>
+                        <%= link_to "Invite Users", new_invite_path(event_id: @event.id), class: "button is-info" %>
+                    <% end %>
                     <% if @event.invitees.empty?%>
                         <p class="m-4">No guests have rsvp'd!</p>
                     <% else %>
