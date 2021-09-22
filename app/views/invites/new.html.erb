@@ -6,7 +6,7 @@
     <div class="tile is-ancestor">
         <div class="tile m-5 is-12">
             <div class="tile is-vertical">
-                <div class="tile is-vertical centered-text is-12 box">
+                <div class="tile is-vertical centered-text is-12">
                     <div class="title is-size-4">
                         Select Users to Invite
                     </div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="tile">
                     <div class="tile is-parent">
-                        <div class="tile is-child box mr-2 is-vertical" id="pending_invites">
+                        <div class="tile is-child mr-2 is-vertical" id="pending_invites">
                             <div class="title is-size-5 is-12 centered-text">Pending Invitations</div>
                             <div>
                                 <% @users_pending.each do |user_pending| %>
@@ -51,7 +51,7 @@
                                 <% end %>
                             </div>
                         </div>
-                        <div class="tile is-child box ml-2 is-vertical" id="accepted_invites">
+                        <div class="tile is-child ml-2 is-vertical" id="accepted_invites">
                             <div class="title is-size-5 is-12 centered-text">Accepted Invitations</div>
                             <div>
                                 <% @users_accepted.each do |user_accepted| %>
