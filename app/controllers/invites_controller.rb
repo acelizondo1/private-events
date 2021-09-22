@@ -5,8 +5,8 @@ class InvitesController < ApplicationController
 
     def new
         generate_uninvited
-        @users_pending = User.joins(:invites).where("invited_event_id=? and invite_status=? and rsvp_status=?", @event.id, 1, 2)
-        @users_accepted = User.joins(:invites).where("invited_event_id=? and invite_status=? and rsvp_status=?", @event.id, 1, 1)
+        @users_pending = User.joins(:invites).where("invited_event_id=? and invite_status=? and rsvp_status=?", @event.id, true, 2)
+        @users_accepted = User.joins(:invites).where("invited_event_id=? and invite_status=? and rsvp_status=?", @event.id, true, 1)
     end
 
     def create
